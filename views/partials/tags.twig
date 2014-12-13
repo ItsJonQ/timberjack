@@ -1,0 +1,5 @@
+{% if post.tags %}
+  {% for tag in post.tags %}
+    <a href="{{tag.link}}">{{tag.name}}</a>
+  {% endfor %}
+{% endif %}

@@ -1,0 +1,5 @@
+{% if post.category %}
+  {% for cat in post.category %}
+    <a href="{{cat.link}}">{{cat.name}}</a>
+  {% endfor %}
+{% endif %}
