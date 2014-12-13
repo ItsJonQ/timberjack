@@ -1,6 +1,6 @@
 <?php
 
-class LumberPost extends TimberPost {
+class LumberPost extends LumberBase {
 
   public function get_category_meta() {
     global $post;
@@ -23,7 +23,7 @@ class LumberPost extends TimberPost {
       $category->id = $cat->term_id;
       $category->name = $cat->name;
       $category->slug = $cat->slug;
-      $category->permalink = get_category_link( $cat );
+      $category->link = get_category_link( $cat );
 
         // Push the category object to the categories array
       $categories[] = $category;
@@ -52,7 +52,7 @@ class LumberPost extends TimberPost {
       $tag->id = $t->term_id;
       $tag->name = $t->name;
       $tag->slug = $t->slug;
-      $tag->permalink = get_tag_link( $t->term_id );
+      $tag->link = get_tag_link( $t->term_id );
 
         // Push the tag object to the tags array
       $tags[] = $tag;
