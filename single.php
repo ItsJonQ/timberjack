@@ -10,14 +10,11 @@
  */
 
 $context = Timber::get_context();
-$post = Timber::query_post();
+$post = new LumberPost();
+
 $context['post'] = $post;
 $context['wp_title'] .= ' - ' . $post->title();
 $context['comment_form'] = TimberHelper::get_comment_form();
-
-// print_r($context);
-print_r($post);
-
 
 if (post_password_required($post->ID)){
 	Timber::render('single-password.twig', $context);
