@@ -10,7 +10,7 @@ if (!class_exists('Timber')){
   return;
 }
 
-require_once(__DIR__ . '/functions/lumber.php');
+require_once(__DIR__ . '/functions/lumberjack.php');
 
 class StarterSite extends TimberSite {
 

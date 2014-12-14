@@ -1,6 +1,6 @@
 <?php
 
-class LumberPost extends LumberBase {
+class LumberjackPost extends LumberjackBase {
 
   public function get_category_meta() {
     global $post;

@@ -1,6 +1,6 @@
 <?php
 
-class LumberBase extends TimberPost {
+class LumberjackBase extends TimberPost {
 
   // Initializing the model
   public function __construct() {
