@@ -4,9 +4,10 @@
  */
 
 $templates = array('search.twig', 'archive.twig', 'index.twig');
-$context = Timber::get_context();
+$data = Timber::get_context();
+$data['pagination'] = Lumberjack::get_pagination();
 
-$context['title'] = 'Search results for '. get_search_query();
-$context['posts'] = Timber::get_posts();
+$data['title'] = 'Search results for '. get_search_query();
+$data['posts'] = Timber::get_posts();
 
-Timber::render($templates, $context);
+Timber::render($templates, $data);

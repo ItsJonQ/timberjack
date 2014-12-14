@@ -3,14 +3,14 @@
  * Template :: Single
  */
 
-$context = Timber::get_context();
 $post = new LumberjackPost();
-$context['post'] = $post;
-$context['wp_title'] .= ' - ' . $post->title();
-$context['comment_form'] = TimberHelper::get_comment_form();
+$data = Timber::get_context();
+$data['post'] = $post;
+$data['wp_title'] .= ' - ' . $post->title();
+$data['comment_form'] = TimberHelper::get_comment_form();
 
 if (post_password_required($post->ID)){
-  Timber::render('single-password.twig', $context);
+  Timber::render('single-password.twig', $data);
 } else {
-  Timber::render(array('single-' . $post->ID . '.twig', 'single-' . $post->post_type . '.twig', 'single.twig'), $context);
+  Timber::render(array('single-' . $post->ID . '.twig', 'single-' . $post->post_type . '.twig', 'single.twig'), $data);
 }

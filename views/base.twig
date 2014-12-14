@@ -12,17 +12,23 @@
     {% include "partials/navigation.twig" %}
 
     <section id="content" role="main" class="content-wrapper">
-      {% if title %}<h1>{{title}}</h1>{% endif %}
+
+      {% if title %}
+        <h1>{{title}}</h1>
+      {% endif %}
+
       <div class="wrapper {{sidebar_class}}">
         {% block content %}
           Sorry, no content
         {% endblock %}
       </div>
+
       {% if sidebar %}
         <aside class="layout-sidebar">
           {{sidebar}}
         </aside>
       {% endif %}
+
     </section>
 
     {% block footer %}

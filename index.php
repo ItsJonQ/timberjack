@@ -8,10 +8,9 @@ if (!class_exists('Timber')){
   return;
 }
 
-$context = Timber::get_context();
-$pagination = Lumberjack::get_pager();
-$context['pagination'] = $pagination;
-$context['posts'] = Timber::get_posts();
+$data = Timber::get_context();
+$data['pagination'] = Lumberjack::get_pagination();
+$data['posts'] = Timber::get_posts();
 
 $templates = array('index.twig');
 
@@ -19,4 +18,4 @@ if (is_home()){
   array_unshift($templates, 'home.twig');
 }
 
-Timber::render($templates, $context);
+Timber::render($templates, $data);
