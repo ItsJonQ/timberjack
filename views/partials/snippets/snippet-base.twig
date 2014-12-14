@@ -6,7 +6,9 @@
     {# Header #}
     <header>
       <h2 itemprop="headline">
-        {{post.title}}
+        <a href="{{post.link}}" itemprop="url" title="{{post.title}}">
+          {{post.title}}
+        </a>
       </h2>
     </header>
 
