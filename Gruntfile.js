@@ -270,6 +270,7 @@ module.exports = function(grunt) { 'use strict';
         ],
         recursive: true
       },
+      // Rsync - Fill out the following to rsync deploy to a server
       production: {
         options: {
           src: './',
