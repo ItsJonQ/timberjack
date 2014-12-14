@@ -1,12 +1,15 @@
+{# View :: Base #}
+
 {% block html_head_container %}
-{% include 'html-header.twig' %}
+{% include 'header.twig' %}
   {% block head %}
   {% endblock %}
   </head>
 {% endblock %}
+
   <body class="{{body_class}}" data-template="base.twig">
 
-    {# {% include "partials/navigation.twig" %} #}
+    {% include "partials/navigation.twig" %}
 
     <section id="content" role="main" class="content-wrapper">
       {% if title %}<h1>{{title}}</h1>{% endif %}
@@ -28,5 +31,6 @@
       </footer>
       {{ function('wp_footer') }}
     {% endblock %}
+
   </body>
 </html>
