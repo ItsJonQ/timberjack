@@ -7,24 +7,26 @@
   </head>
 {% endblock %}
 
-  <body class="{{body_class}}" data-template="base.twig">
+  <body class="{{body_class}}">
 
     {% include "partials/navigation.twig" %}
 
-    <section id="content" role="main" class="content-wrapper">
+    <section id="main" role="main">
 
       {% if title %}
-        <h1>{{title}}</h1>
+        <header>
+          <h1>{{title}}</h1>
+        </header>
       {% endif %}
 
-      <div class="wrapper {{sidebar_class}}">
+      <div class="{{sidebar_class}}">
         {% block content %}
           Sorry, no content
         {% endblock %}
       </div>
 
       {% if sidebar %}
-        <aside class="layout-sidebar">
+        <aside class="sidebar">
           {{sidebar}}
         </aside>
       {% endif %}

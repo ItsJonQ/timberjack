@@ -1,14 +1,24 @@
 {# View :: Partial :: Comments #}
 
-<section class="comments">
-  <div class="respond">
-    <h3 class="h2">Comments</h3>
+<div class="comments">
+  <meta itemtype="discussionUrl" content="{{post.link}}">
+
+  {# Comment Form #}
+  <section>
+    <header>
+      <h3>Comments</h3>
+    </header>
     {{ comment_form }}
   </div>
-  <div class="responses">
-    {% for cmt in post.get_comments() %}
-      {% include "comment.twig" with {comment:cmt} %}
-    {% endfor %}
-  </div>
 
-</section>
+  {# Comments #}
+  <section>
+    <header>
+      <h3>Latest Comments</h3>
+    </header>
+    {% for cmt in post.get_comments() %}
+      {% include "partials/comments/comment.twig" with {comment:cmt} %}
+    {% endfor %}
+  </section>
+
+</div>

@@ -7,23 +7,32 @@
   {% include "partials/category.twig" %}
   {% include "partials/tags.twig" %}
 
-  <div class="content-wrapper">
-    <article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
-      <section class="article-content">
-        <h1 class="article-h1">{{post.title}}</h1>
+  <article class="post-type-{{post.post_type}}" id="post-{{post.ID}}" role="article" itemscope itemtype="http://schema.org/Article">
 
-        <p class="blog-author">
-          <span>By</span><a href="{{post.author.path}}"> {{ post.author.name }} </a><span>&bull;</span> {{ post.post_date|date}}
-        </p>
+    {# Header #}
+    <header>
+      <h1 itemprop="headline">
+        {{post.title}}
+      </h1>
+    </header>
 
-        <div class="article-body">
-          {{post.content}}
-        </div>
-      </section>
+    {# Author #}
+    <div>
+      <span>By</span>
+      <a href="{{post.author.path}}" itemprop="author">{{ post.author.name }}</a>
+      <span>&bull;</span>
+      <span itemprop="datePublished" content="{{ post.post_date|date}}">
+        {{ post.post_date|date}}
+      </span>
+    </div>
 
-      {% include "partials/comments.twig" %}
+    {# Content #}
+    <div itemprop="articleBody">
+      {{post.content}}
+    </div>
 
-    </article>
-  </div>
+    {% include "partials/comments.twig" %}
+
+  </article>
 
 {% endblock %}

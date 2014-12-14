@@ -2,6 +2,6 @@
 
 {% if post.category %}
   {% for cat in post.category %}
-    <a href="{{cat.link}}">{{cat.name}}</a>
+    <a href="{{cat.link}}" itemprop="articleSection">{{cat.name}}</a>
   {% endfor %}
 {% endif %}
