@@ -13,6 +13,9 @@
     </h2>
   </header>
 
+  {# Author / Date #}
+  {% include "partials/post/post-meta.twig" %}
+
   {# Thumbnail #}
   {% if post.get_thumbnail %}
     <img src="{{post.thumbnail.src}}" itemprop="image" />

@@ -16,15 +16,8 @@
       </h1>
     </header>
 
-    {# Author #}
-    <div>
-      <span>By</span>
-      <a href="{{post.author.path}}" itemprop="author">{{ post.author.name }}</a>
-      <span>&bull;</span>
-      <span itemprop="datePublished" content="{{ post.post_date|date}}">
-        {{ post.post_date|date}}
-      </span>
-    </div>
+    {# Author / Date #}
+    {% include "partials/post/post-meta.twig" %}
 
     {# Content #}
     <div itemprop="articleBody">
