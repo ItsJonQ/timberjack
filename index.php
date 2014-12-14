@@ -9,6 +9,8 @@ if (!class_exists('Timber')){
 }
 
 $context = Timber::get_context();
+$pagination = Lumberjack::get_pager();
+$context['pagination'] = $pagination;
 $context['posts'] = Timber::get_posts();
 
 $templates = array('index.twig');

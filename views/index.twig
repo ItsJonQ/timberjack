@@ -7,8 +7,10 @@
   <p>{{qux}}</p>
   {% for post in posts %}
 
-    {% include ['/partials/snippets/snippet.twig'] %}
+    {% include ['/partials/snippet.twig'] %}
 
   {% endfor %}
+
+  {% include ['partials/pagination.twig'] %}
 
 {% endblock %}
