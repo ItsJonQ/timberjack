@@ -54,7 +54,7 @@ module.exports = function(grunt) { 'use strict';
         }
       },
       php: {
-        files: ['**/*.php'],
+        files: ['**/*.php', '**/*.twig'],
         options: {
           livereload: '<%= config.liveReload %>'
         }
