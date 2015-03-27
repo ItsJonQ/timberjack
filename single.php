@@ -3,7 +3,7 @@
  * Template :: Single
  */
 
-$post = new LumberjackPost();
+$post = new TimberPost();
 $data = Timber::get_context();
 $data['post'] = $post;
 $data['comment_form'] = TimberHelper::get_comment_form();

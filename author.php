@@ -6,7 +6,7 @@
 global $wp_query;
 
 $data = Timber::get_context();
-$data['pagination'] = Lumberjack::get_pagination();
+$data['pagination'] = Timber::get_pagination();
 $data['posts'] = Timber::get_posts();
 
 if (isset($wp_query->query_vars['author'])){

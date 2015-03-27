@@ -9,7 +9,7 @@ if (!class_exists('Timber')){
 }
 
 $data = Timber::get_context();
-$data['pagination'] = Lumberjack::get_pagination();
+$data['pagination'] = Timber::get_pagination();
 $data['posts'] = Timber::get_posts();
 
 $templates = array('index.twig');

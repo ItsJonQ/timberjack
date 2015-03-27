@@ -10,13 +10,6 @@ if (!class_exists('Timber')){
   return;
 }
 
-if (!class_exists('Lumberjack')){
-  add_action( 'admin_notices', function(){
-    echo '<div class="error"><p>Lumberjack not activated. Make sure you activate the plugin in <a href="' . admin_url('plugins.php#lumberjack') . '">' . admin_url('plugins.php') . '</a></p></div>';
-  });
-  return;
-}
-
 class StarterSite extends TimberSite {
 
   function __construct(){
