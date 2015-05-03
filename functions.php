@@ -10,6 +10,9 @@ if (!class_exists('Timber')){
   return;
 }
 
+// DEVELOPMENT :: Hide Admin Bar
+add_filter('show_admin_bar', '__return_false');
+
 // DEVELOPMENT :: Live Reload
 if (in_array($_SERVER['REMOTE_ADDR'], array('127.0.0.1', '::1'))) {
   wp_register_script('livereload', 'http://localhost:42526/livereload.js?snipver=1', null, false, true);
