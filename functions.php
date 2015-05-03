@@ -19,16 +19,32 @@ if (in_array($_SERVER['REMOTE_ADDR'], array('127.0.0.1', '::1'))) {
   wp_enqueue_script('livereload');
 }
 
+
+// CUSTOM FUNCTIONS
+require_once( 'functions/filter.gallery.php' );
+
+
 class StarterSite extends TimberSite {
 
   function __construct(){
+
+    // + Theme Support
     add_theme_support('post-formats');
     add_theme_support('post-thumbnails');
     add_theme_support('menus');
+
+    // + Filters
     add_filter('timber_context', array($this, 'add_to_context'));
     add_filter('get_twig', array($this, 'add_to_twig'));
+    add_filter( 'post_gallery', 'filter_gallery', 10, 2);
+
+    // +Enqueue
+    add_action('wp_enqueue_scripts', array($this, 'deregister_scripts'));
+
+    // + Init
     add_action('init', array($this, 'register_post_types'));
     add_action('init', array($this, 'register_taxonomies'));
+
     parent::__construct();
   }
 
@@ -49,15 +65,15 @@ class StarterSite extends TimberSite {
   function add_to_twig($twig){
     /* this is where you can add your own fuctions to twig */
     $twig->addExtension(new Twig_Extension_StringLoader());
-    $twig->addFilter('myfoo', new Twig_Filter_Function('myfoo'));
     return $twig;
   }
 
-}
+  function deregister_scripts() {
+    // Deregister jQuery if the page is not Admin
+    if (!is_admin()) wp_deregister_script('jquery');
+  }
 
+
+}
+// Initialize
 new StarterSite();
-
-function myfoo($text){
-    $text .= ' bar!';
-    return $text;
-}
