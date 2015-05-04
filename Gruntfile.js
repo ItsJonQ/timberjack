@@ -266,6 +266,7 @@ module.exports = function(grunt) { 'use strict';
         '*.scss',
         'node_modules',
         '.sass-cache',
+        'app',
         'bower_components',
         'dist',
         'src',
