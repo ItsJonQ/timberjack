@@ -15,7 +15,7 @@
   ],
   "dependencies": {
     "jquery": "~2.1.1",
-    "bourbon": "~4.0.2",
+    "bourbon": "~3.2.4",
     "bootstrap-sass-official": "~3.3.1"
   }
 }

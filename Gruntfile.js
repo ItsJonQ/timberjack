@@ -56,7 +56,7 @@ module.exports = function(grunt) { 'use strict';
         }
       },
       php: {
-        files: ['**/*.php', '**/*.twig'],
+        files: ['**/*.php', '**/*.twig', '!views/**/*'],
         tasks: ['copy:views'],
         options: {
           livereload: '<%= config.liveReload %>'
@@ -145,7 +145,6 @@ module.exports = function(grunt) { 'use strict';
 
     sass: {
       options: {
-        sourcemap: true,
         loadPath: 'bower_components'
       },
       dist: {
