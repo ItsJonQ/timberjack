@@ -1,0 +1,31 @@
+{# View :: Single #}
+
+{% extends "base.twig" %}
+
+{% block content %}
+
+  {% include "partials/category.twig" %}
+  {% include "partials/tags.twig" %}
+
+  <article class="post-type-{{post.post_type}}" id="post-{{post.ID}}" role="article" itemscope itemtype="http://schema.org/Article">
+
+    {# Header #}
+    <header>
+      <h1 itemprop="headline">
+        {{post.title}}
+      </h1>
+    </header>
+
+    {# Author / Date #}
+    {% include "partials/post/post-meta.twig" %}
+
+    {# Content #}
+    <div itemprop="articleBody">
+      {{post.content}}
+    </div>
+
+    {% include "partials/comments.twig" %}
+
+  </article>
+
+{% endblock %}

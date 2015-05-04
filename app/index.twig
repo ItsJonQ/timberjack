@@ -1,0 +1,15 @@
+{# View :: Index #}
+
+{% extends "base.twig" %}
+
+{% block content %}
+
+  {% for post in posts %}
+
+    {% include ['/partials/snippet.twig'] %}
+
+  {% endfor %}
+
+  {% include ['partials/pagination.twig'] %}
+
+{% endblock %}

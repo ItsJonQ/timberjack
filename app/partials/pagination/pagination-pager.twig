@@ -1,0 +1,20 @@
+{# View :: Partial :: Pagination - Page #}
+
+<nav>
+  <ul class="pager">
+    {% if pagination.prev %}
+      <li class="previous">
+        <a href="{{pagination.prev.link}}" class="prev {{pagination.prev.link|length ? '' : 'invisible'}}">
+          Previous
+        </a>
+      </li>
+    {% endif %}
+    {% if pagination.next %}
+      <li class="next">
+        <a href="{{pagination.next.link}}" class="next {{pagination.next.link|length ? '' : 'invisible'}}">
+          Next
+        </a>
+      </li>
+    {% endif %}
+  </ul>
+</nav>

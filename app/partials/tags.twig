@@ -1,0 +1,7 @@
+{# View :: Partial :: Tags #}
+
+{% if post.tags %}
+  {% for tag in post.tags %}
+    <a href="{{tag.link}}" itemprop="keywords">{{tag.name}}</a>
+  {% endfor %}
+{% endif %}

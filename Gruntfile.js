@@ -5,13 +5,15 @@ module.exports = function(grunt) { 'use strict';
   require('load-grunt-tasks')(grunt);
 
   var config = {
-    dest: 'public',
-    dist: 'dist',
+    app: 'app',
+    assetsDir: '{{site.theme.link}}/',
+    dist: 'public',
     liveReload: 42526,
     port: 80,
     src: 'src',
     temp: '.tmp',
-    url: 'url.dev'
+    url: 'url.dev',
+    views: 'views'
   };
 
   grunt.initConfig({
@@ -55,6 +57,7 @@ module.exports = function(grunt) { 'use strict';
       },
       php: {
         files: ['**/*.php', '**/*.twig'],
+        tasks: ['copy:views'],
         options: {
           livereload: '<%= config.liveReload %>'
         }
@@ -120,8 +123,8 @@ module.exports = function(grunt) { 'use strict';
           dot: true,
           src: [
             '.tmp',
-            '<%%= config.dist %>/*',
-            '!<%%= config.dist %>/.git*'
+            '<%= config.dist %>/*',
+            '!<%= config.dist %>/.git*'
           ]
         }]
       },
@@ -159,7 +162,7 @@ module.exports = function(grunt) { 'use strict';
           expand: true,
           cwd: '<%= config.src %>/styles',
           src: ['*.{scss,sass}'],
-          dest: '<%= config.dest %>/styles',
+          dest: '<%= config.dist %>/styles',
           ext: '.css'
         }]
       }
@@ -196,7 +199,7 @@ module.exports = function(grunt) { 'use strict';
         files: [{
           expand: true,
           cwd: '<%= config.src %>/images',
-          dest: '<%= config.dest %>/images',
+          dest: '<%= config.dist %>/images',
           src: ['**']
         }]
       },
@@ -204,13 +207,13 @@ module.exports = function(grunt) { 'use strict';
         files: [{
           expand: true,
           cwd: '<%= config.temp %>/scripts',
-          dest: '<%= config.dest %>/scripts',
+          dest: '<%= config.dist %>/scripts',
           src: ['**']
         }]
       },
       jquery: {
         src: 'bower_components/jquery/dist/jquery.min.map',
-        dest: '<%= config.dest %>/scripts/jquery.min.map'
+        dest: '<%= config.dist %>/scripts/jquery.min.map'
       },
       styles: {
         expand: true,
@@ -218,6 +221,14 @@ module.exports = function(grunt) { 'use strict';
         cwd: '<%= config.src %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
+      },
+      views: {
+        files: [{
+          expand: true,
+          cwd: '<%= config.app %>',
+          dest: '<%= config.views %>',
+          src: ['**']
+        }]
       }
     },
 
@@ -284,7 +295,7 @@ module.exports = function(grunt) { 'use strict';
     cssmin: {
       styles: {
         files: {
-          '<%= config.dest %>/styles/main.css': ['<%= config.temp %>/styles/main.css']
+          '<%= config.dist %>/styles/main.css': ['<%= config.temp %>/styles/main.css']
         }
       }
     },
@@ -295,30 +306,76 @@ module.exports = function(grunt) { 'use strict';
       },
       scripts: {
         files: {
-          '<%= config.dest %>/scripts/main.js': ['<%= config.temp %>/scripts/main.js']
+          '<%= config.dist %>/scripts/main.js': ['<%= config.temp %>/scripts/main.js']
         }
       },
       vendor: {
         files: {
-          '<%= config.dest %>/scripts/vendor.js': ['<%= config.temp %>/scripts/vendor.js']
+          '<%= config.dist %>/scripts/vendor.js': ['<%= config.temp %>/scripts/vendor.js']
         }
       }
-    }
-  });
+    },
 
-  grunt.registerTask('serve', 'start the server and preview your app, --allow-remote for remote access', function (target) {
-    if (grunt.option('allow-remote')) {
-      grunt.config.set('connect.options.hostname', '0.0.0.0');
-    }
-    if (target === 'dist') {
-      return grunt.task.run(['build', 'connect:dist:keepalive']);
+    // Renames files for browser caching purposes
+    filerev: {
+      dist: {
+        src: [
+          '<%= config.dist %>/scripts/{,*/}*.js',
+          '<%= config.dist %>/styles/{,*/}*.css'
+        ]
+      }
+    },
+
+    // Performs rewrites based on rev and the useminPrepare configuration
+    usemin: {
+      options: {
+        assetsDirs: [
+          '<%= config.dist %>',
+        ],
+        blockReplacements: {
+          css: function (block) {
+            var asset = block.dest;
+            var assetsDir = '';
+            var obj;
+
+            if(config.assetsDir) {
+              assetsDir = config.assetsDir;
+            }
+
+            if(grunt.filerev && grunt.filerev.summary) {
+              obj = grunt.filerev.summary;
+
+              if(obj.hasOwnProperty(block.dest)) {
+                asset = obj[block.dest];
+              }
+            }
+
+            return '<link rel="stylesheet" href="' + assetsDir + asset + '">';
+          },
+          js: function (block) {
+            var asset = block.dest;
+            var assetsDir = '';
+            var obj;
+
+            if(config.assetsDir) {
+              assetsDir = config.assetsDir;
+            }
+
+            if(grunt.filerev && grunt.filerev.summary) {
+              obj = grunt.filerev.summary;
+
+              if(obj.hasOwnProperty(block.dest)) {
+                asset = obj[block.dest];
+              }
+            }
+
+            return '<script src="' + assetsDir + asset + '"></script>';
+          }
+        }
+      },
+      html: ['<%= config.views %>/{,*/}*.twig']
     }
 
-    grunt.task.run([
-      'clean:server',
-      'concurrent:server',
-      'watch'
-    ]);
   });
 
   grunt.registerTask('server', function (target) {
@@ -327,12 +384,17 @@ module.exports = function(grunt) { 'use strict';
   });
 
   grunt.registerTask('baseBuild', [
+    'clean',
     'sass',
     'browserify:scripts',
-    'copy:scripts',
-    'copy:images',
-    'copy:jquery',
-    'concat:scripts'
+    'concat',
+    'copy'
+  ]);
+
+  grunt.registerTask('revBuild', [
+    'baseBuild',
+    'filerev',
+    'usemin'
   ]);
 
   grunt.registerTask('minify', [
@@ -340,13 +402,13 @@ module.exports = function(grunt) { 'use strict';
     'uglify'
   ]);
 
-  grunt.registerTask('start', [
+  grunt.registerTask('serve', [
     'baseBuild',
     'watch'
   ]);
 
   grunt.registerTask('build', [
-    'baseBuild',
+    'revBuild',
     'minify'
   ]);
 

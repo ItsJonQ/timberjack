@@ -1,0 +1,32 @@
+{# View :: Partial :: Snippet - Post #}
+
+{% extends "snippet-base.twig" %}
+
+{% block content %}
+
+  {# Header #}
+  <header>
+    <h2 itemprop="headline">
+      <a href="{{post.link}}" itemprop="url">
+        {{post.title}}
+      </a>
+    </h2>
+  </header>
+
+  {# Author / Date #}
+  {% include "partials/post/post-meta.twig" %}
+
+  {# Thumbnail #}
+  {% if post.get_thumbnail %}
+    <img src="{{post.thumbnail.src}}" itemprop="image" />
+    <meta itemprop="thumbnailUrl" content="{{post.thumbnail.src}}">
+  {% endif %}
+
+  {# Content #}
+  <div itemprop="articleBody">
+    <p>
+      {{post.get_preview(25, false, "Read More")}}
+    </p>
+  </div>
+
+{% endblock %}
