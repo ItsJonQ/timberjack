@@ -330,7 +330,7 @@ module.exports = function(grunt) { 'use strict';
     usemin: {
       options: {
         assetsDirs: [
-          '<%= config.dist %>',
+          '<%= config.dist %>'
         ],
         blockReplacements: {
           css: function (block) {
@@ -373,7 +373,9 @@ module.exports = function(grunt) { 'use strict';
           }
         }
       },
-      html: ['<%= config.views %>/{,*/}*.twig']
+      html: ['<%= config.views %>/{,*/}*.twig'],
+      css: ['<%%= config.dist %>/styles/{,*/}*.css'],
+      js: ['<%%= config.dist %>/scripts/{,*/}*.js']
     }
 
   });
