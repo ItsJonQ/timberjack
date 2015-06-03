@@ -374,8 +374,8 @@ module.exports = function(grunt) { 'use strict';
         }
       },
       html: ['<%= config.views %>/{,*/}*.twig'],
-      css: ['<%%= config.dist %>/styles/{,*/}*.css'],
-      js: ['<%%= config.dist %>/scripts/{,*/}*.js']
+      css: ['<%= config.dist %>/styles/{,*/}*.css'],
+      js: ['<%= config.dist %>/scripts/{,*/}*.js']
     }
 
   });
