@@ -10,6 +10,7 @@ module.exports = function(grunt) { 'use strict';
     dist: 'public',
     liveReload: 42526,
     port: 80,
+    rsyncHost: 'root@123.45.67.890',
     src: 'src',
     temp: '.tmp',
     theme: 'tneme-name',
@@ -283,11 +284,19 @@ module.exports = function(grunt) { 'use strict';
         recursive: true
       },
       // Rsync - Fill out the following to rsync deploy to a server
+      plugins: {
+        options: {
+          src: '../../plugins',
+          dest: '../var/www/wp-content/plugins',
+          host: '<%= config.rsyncHost %>',
+            delete: true
+        }
+      },
       production: {
         options: {
           src: './',
-          dest: '',
-          host: '',
+          dest: '../var/www/wp-content/themes/<%= config.theme %>',
+          host: '<%= config.rsyncHost %>',
           delete: true
         }
       }
