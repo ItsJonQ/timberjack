@@ -12,6 +12,7 @@ module.exports = function(grunt) { 'use strict';
     port: 80,
     src: 'src',
     temp: '.tmp',
+    theme: 'tneme-name',
     url: 'url.dev',
     views: 'views'
   };
@@ -236,7 +237,7 @@ module.exports = function(grunt) { 'use strict';
         src: [
         'bower_components/jquery/dist/jquery.min.js',
         'bower_components/bootstrap/dist/js/bootstrap.min.js',
-        'vendor/scripts/**/*.js',
+        '<%= config.src %>/scripts/vendor/**/*.js',
         ],
         dest: '<%= config.temp %>/scripts/vendor.js'
       }
