@@ -14,11 +14,11 @@ if (!class_exists('Timber')){
 add_filter('show_admin_bar', '__return_false');
 
 // DEVELOPMENT :: Live Reload
-if (in_array($_SERVER['REMOTE_ADDR'], array('127.0.0.1', '::1'))) {
-  wp_register_script('livereload', 'http://localhost:42526/livereload.js?snipver=1', null, false, true);
-  wp_enqueue_script('livereload');
+function register_livereload() {
+  if (in_array($_SERVER['REMOTE_ADDR'], array('127.0.0.1', '::1'))) {
+    wp_register_script('livereload', 'http://localhost:42526/livereload.js?snipver=1', null, false, true);
+  }
 }
-
 
 // CUSTOM FUNCTIONS
 require_once( 'functions/filter.gallery.php' );
@@ -40,6 +40,7 @@ class StarterSite extends TimberSite {
 
     // +Enqueue
     add_action('wp_enqueue_scripts', array($this, 'deregister_scripts'));
+    add_action('wp_enqueue_scripts', 'register_livereload');
 
     // + Init
     add_action('init', array($this, 'register_post_types'));
