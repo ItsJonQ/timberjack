@@ -9,6 +9,13 @@ class TimjackRouter {
       $data = array_merge($data, $params);
     }
 
+    // Default title to the site's name
+    if(!$data['wp_title']) {
+      if($data['site']->name) {
+        $data['wp_title'] = $data['site']->name;
+      }
+    }
+
     return $data;
   }
 
