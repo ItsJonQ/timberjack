@@ -23,4 +23,4 @@ if(empty($data['posts'])) {
 $templates = TimjackRouter::templates($templates);
 $data = TimjackRouter::data($data);
 
-Timber::render($templates, $data);Timber::render(array('single-' . $post->ID . '.twig', 'single-' . $post->post_type . '.twig', 'single.twig'), $data);
+Timber::render($templates, $data);
