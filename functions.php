@@ -20,9 +20,26 @@ function register_livereload() {
   }
 }
 
+// API
+// Add ACF info to the WP JSON API response
+// Source: https://gist.github.com/rileypaulsen/9b4505cdd0ac88d5ef51
+function wp_api_encode_acf($data,$post,$context){
+  $data['meta'] = array_merge($data['meta'],get_fields($post['ID']));
+  return $data;
+}
+if( function_exists('get_fields') ){
+  add_filter('json_prepare_post', 'wp_api_encode_acf', 10, 3);
+}
+
+
+// ROUTER
+require_once( 'functions/router.php' );
+
+// BASE
+require_once( 'classes/class.TimjackRouter.php' );
+
 // CUSTOM FUNCTIONS
 require_once( 'functions/filter.gallery.php' );
-
 
 class StarterSite extends TimberSite {
 
@@ -32,6 +49,7 @@ class StarterSite extends TimberSite {
     add_theme_support('post-formats');
     add_theme_support('post-thumbnails');
     add_theme_support('menus');
+    // add_theme_support( 'post-formats', array( 'link', 'gallery', 'video' ) );
 
     // + Filters
     add_filter('timber_context', array($this, 'add_to_context'));
@@ -40,7 +58,7 @@ class StarterSite extends TimberSite {
 
     // +Enqueue
     add_action('wp_enqueue_scripts', array($this, 'deregister_scripts'));
-    add_action('wp_enqueue_scripts', 'register_livereload');
+
 
     // + Init
     add_action('init', array($this, 'register_post_types'));
@@ -60,6 +78,16 @@ class StarterSite extends TimberSite {
   function add_to_context($context){
     $context['menu'] = new TimberMenu();
     $context['site'] = $this;
+
+    $context['environment'] = "production";
+    if (in_array($_SERVER['REMOTE_ADDR'], array('127.0.0.1', '::1'))) {
+      $context['environment'] = "development";
+    }
+
+    // Defining the theme's public folder
+    $context['site']->theme->public = $context['site']->theme->uri . "/public";
+    $context['site']->theme->images = $context['site']->theme->public . "/images";
+
     return $context;
   }
 

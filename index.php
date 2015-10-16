@@ -8,14 +8,27 @@ if (!class_exists('Timber')){
   return;
 }
 
-$data = Timber::get_context();
-$data['pagination'] = Timber::get_pagination();
-$data['posts'] = Timber::get_posts();
+global $params;
 
 $templates = array('index.twig');
 
 if (is_home()){
   array_unshift($templates, 'home.twig');
 }
+
+$data = Timber::get_context();
+
+// Posts
+$data['posts'] = Timber::get_posts();
+$data['pagination'] = Timber::get_pagination();
+
+// Show 404 if $data is empty
+if(empty($data['posts'])) {
+  $templates = array('404.twig');
+}
+
+// Extending $data with $params
+$templates = TimjackRouter::templates($templates);
+$data = TimjackRouter::data($data);
 
 Timber::render($templates, $data);

@@ -3,10 +3,11 @@
  * Template :: Archive
  */
 
+global $params;
+
 $templates = array('archive.twig', 'index.twig');
 
 $data = Timber::get_context();
-$data['pagination'] = Timber::get_pagination();
 
 $data['title'] = 'Archive';
 if (is_day()){
@@ -25,6 +26,17 @@ if (is_day()){
   array_unshift($templates, 'archive-'.get_post_type().'.twig');
 }
 
+// Posts
 $data['posts'] = Timber::get_posts();
+$data['pagination'] = Timber::get_pagination();
+
+// Show 404 if $data is empty
+if(empty($data['posts'])) {
+  $templates = array('404.twig');
+}
+
+// Extending $data with $params
+$templates = TimjackRouter::templates($templates);
+$data = TimjackRouter::data($data);
 
 Timber::render($templates, $data);
