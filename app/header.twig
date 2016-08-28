@@ -18,8 +18,12 @@
 {% include ['/partials/header-css-normalize.twig'] %}
 
 {# Theme's Stylesheet #}
-<!-- build:css public/styles/main.css -->
 <link rel="stylesheet" href="{{site.theme.link}}/public/styles/main.css">
-<!-- endbuild -->
+
+{% if ENV == "development" %}
+  <script id="__bs_script__">//<![CDATA[
+      document.write("<script async src='/browser-sync/browser-sync-client.2.14.0.js'><\/script>".replace("HOST", location.hostname));
+  //]]></script>
+{% endif %}
 
 {{function('wp_head')}}

@@ -3,6 +3,9 @@
  * Functions
  */
 
+// Composer dependencies
+require_once('vendor/autoload.php');
+
 if (!class_exists('Timber')){
   add_action( 'admin_notices', function(){
     echo '<div class="error"><p>Timber not activated. Make sure you activate the plugin in <a href="' . admin_url('plugins.php#timber') . '">' . admin_url('plugins.php') . '</a></p></div>';
@@ -78,15 +81,17 @@ class StarterSite extends TimberSite {
   function add_to_context($context){
     $context['menu'] = new TimberMenu();
     $context['site'] = $this;
-
     $context['environment'] = "production";
-    if (in_array($_SERVER['REMOTE_ADDR'], array('127.0.0.1', '::1'))) {
-      $context['environment'] = "development";
-    }
 
     // Defining the theme's public folder
     $context['site']->theme->public = $context['site']->theme->uri . "/public";
     $context['site']->theme->images = $context['site']->theme->public . "/images";
+
+    $context['site']->ENV = "production";
+    if (in_array($_SERVER['REMOTE_ADDR'], array('127.0.0.1', '::1'))) {
+      $context['site']->ENV = "development";
+      $context['environment'] = "development";
+    }
 
     return $context;
   }
