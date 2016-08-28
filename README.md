@@ -4,7 +4,7 @@ A starter boilerplate theme for Wordpress that runs on [Timber](https://github.c
 ### Prerequisites
 - npm
 - bower
-- grunt
+- gulp
 - local Wordpress environment
 
 --
@@ -14,7 +14,7 @@ A starter boilerplate theme for Wordpress that runs on [Timber](https://github.c
 - Open terminal
 - ```cd``` into the timberjack folder
 - run ```npm install && bower install```
-- run ```grunt serve```
+- run ```gulp```
 
 --
 
@@ -26,5 +26,5 @@ A starter boilerplate theme for Wordpress that runs on [Timber](https://github.c
 --
 
 ### Deploying
-- add your server's information to ```rsync:production``` in your ```Gruntfile.js```
-- run ```grunt deploy```
+- add your server's information to ```sync``` in your ```scripts/config.js```
+- run ```gulp deploy```
