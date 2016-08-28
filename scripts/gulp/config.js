@@ -10,12 +10,12 @@ var config = {
   port: 8114,
   src: 'src',
   sync: {
-    dest: ''
+    dest: '',
     host: '',
     user: 'root'
   },
   temp: '.tmp',
-  url: 'localhost',
+  url: 'localhost:8114',
   views: 'views',
 };
 

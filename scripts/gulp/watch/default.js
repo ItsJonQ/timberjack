@@ -7,6 +7,7 @@ var runSequence = require('run-sequence');
 gulp.task('watch', function(callback) {
   runSequence([
     'watch-php',
+    'watch-twig',
     'watch-images',
     'watch-scripts',
     'watch-styles',

@@ -10,9 +10,8 @@ var files = [
 ];
 
 gulp.task('browsersync', function() {
-  global.browserSync.init({
-    proxy: global.config.url,
+  global.browserSync.init(files, {
     port: global.config.port,
-    injectChanges: true
+    proxy: global.config.url
   });
 });
