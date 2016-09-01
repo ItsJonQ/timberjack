@@ -20,10 +20,4 @@
 {# Theme's Stylesheet #}
 <link rel="stylesheet" href="{{site.theme.link}}/public/styles/main.css">
 
-{% if ENV == "development" %}
-  <script id="__bs_script__">//<![CDATA[
-      document.write("<script async src='/browser-sync/browser-sync-client.2.14.0.js'><\/script>".replace("HOST", location.hostname));
-  //]]></script>
-{% endif %}
-
 {{function('wp_head')}}

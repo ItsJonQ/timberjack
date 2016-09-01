@@ -6,8 +6,8 @@ var config = {
   assetsDir: '{{site.theme.link}}/',
   cache: '.asset-cache',
   dest: 'public',
-  name: 'kbw-investments',
-  port: 8114,
+  name: 'app',
+  port: 8080,
   src: 'src',
   sync: {
     dest: '',
@@ -15,7 +15,7 @@ var config = {
     user: 'root'
   },
   temp: '.tmp',
-  url: 'localhost:8114',
+  url: 'app.dev',
   views: 'views',
 };
 
