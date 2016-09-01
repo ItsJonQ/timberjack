@@ -5,6 +5,7 @@
 
 // Composer dependencies
 require_once('vendor/autoload.php');
+$timber = new \Timber\Timber();
 
 if (!class_exists('Timber')){
   add_action( 'admin_notices', function(){
