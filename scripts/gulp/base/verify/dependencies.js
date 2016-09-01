@@ -8,6 +8,7 @@ gulp.task('verify-dependencies', function(callback) {
   console.log('Verifying dependencies!');
 
   runSequence(
+    'verify-composer',
     'verify-npm',
     'verify-bower',
     callback
