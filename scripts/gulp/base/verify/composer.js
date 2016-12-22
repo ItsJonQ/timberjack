@@ -5,5 +5,5 @@ var gulp = require('gulp');
 
 gulp.task('verify-composer', function(callback) {
   var task = 'composer install';
-  return global.exec(task, callback);
+  return global.spawn(task, callback);
 });

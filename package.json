@@ -17,30 +17,28 @@
   },
   "homepage": "https://github.com/ItsJonQ/timberjack",
   "devDependencies": {
-    "browser-sync": "^2.14.0",
-    "browserify": "^13.1.0",
+    "browser-sync": "^2.18.5",
+    "browserify": "^13.1.1",
     "check-dependencies": "^1.0.1",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
-    "gulp-clean-css": "^2.0.12",
-    "gulp-concat": "^2.6.0",
+    "gulp-clean-css": "^2.3.2",
+    "gulp-concat": "^2.6.1",
     "gulp-plumber": "^1.1.0",
     "gulp-rename": "^1.2.2",
-    "gulp-rsync": "0.0.6",
-    "gulp-sass": "^2.3.2",
-    "gulp-sourcemaps": "^1.6.0",
+    "gulp-rsync": "0.0.7",
+    "gulp-sass": "^3.0.0",
+    "gulp-sourcemaps": "^1.9.1",
     "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.7",
     "lazypipe": "^1.0.1",
-    "require-dir": "^0.3.0",
+    "require-dir": "^0.3.1",
     "run-sequence": "^1.2.2",
-    "seed-harvester": "0.0.8",
-    "seed-packer": "0.0.6",
+    "seed-harvester": "0.1.5",
+    "seed-packer": "0.0.10",
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
-    "bootstrap-sass": "^3.3.7",
-    "bourbon": "^4.2.7",
-    "jquery": "^3.1.0"
+    "jquery": "^3.1.1"
   }
 }

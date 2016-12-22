@@ -4,6 +4,7 @@
 global.config = require('./scripts/gulp/config');
 global.path = __dirname;
 global.exec = require('./scripts/node/utils/exec');
+global.spawn = require('./scripts/node/utils/spawn');
 global.require = function(modulePath, options) {
   var log = true;
 
