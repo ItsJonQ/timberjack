@@ -3,7 +3,6 @@ A starter boilerplate theme for Wordpress that runs on [Timber](https://github.c
 
 ### Prerequisites
 - npm
-- bower
 - gulp
 - local Wordpress environment
 
@@ -13,7 +12,7 @@ A starter boilerplate theme for Wordpress that runs on [Timber](https://github.c
 - Clone/copy timberjack into your wp-contents/theme folder
 - Open terminal
 - ```cd``` into the timberjack folder
-- run ```npm install && bower install```
+- run ```npm install```
 - run ```gulp```
 
 --

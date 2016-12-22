@@ -10,7 +10,6 @@ gulp.task('verify-dependencies', function(callback) {
   runSequence(
     'verify-composer',
     'verify-npm',
-    'verify-bower',
     callback
   );
 });
