@@ -12,8 +12,6 @@ var includePaths = harvester(
   // Base
   global.config.src + '/styles',
   // Vendors
-  require('bourbon').includePaths,
-  'node_modules/bootstrap-sass/assets/stylesheets'
 );
 
 var pipe = lazypipe()
