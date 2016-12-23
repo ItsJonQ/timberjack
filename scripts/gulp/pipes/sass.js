@@ -10,7 +10,7 @@ var sass = require('gulp-sass');
 
 var includePaths = harvester(
   // Base
-  global.config.src + '/styles',
+  global.config.src + '/styles'
   // Vendors
 );
 
