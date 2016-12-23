@@ -5,6 +5,7 @@ var gulp = require('gulp');
 var rsync = require('gulp-rsync');
 
 var syncPaths = [
+  './*',
   './**/*.php',
   './public/**/*',
   './views/**/*.twig',
