@@ -1,9 +1,5 @@
-{# View :: Partial :: Comments #}
-
 <div class="comments">
   <meta itemtype="discussionUrl" content="{{post.link}}">
-
-  {# Comment Form #}
   <section>
     <header>
       <h3>Comments</h3>
@@ -11,7 +7,6 @@
     {{ comment_form }}
   </div>
 
-  {# Comments #}
   <section>
     <header>
       <h3>Latest Comments</h3>
@@ -20,5 +15,4 @@
       {% include "partials/comments/comment.twig" with {comment:cmt} %}
     {% endfor %}
   </section>
-
 </div>

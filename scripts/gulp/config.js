@@ -2,7 +2,7 @@
 'use strict';
 
 var config = {
-  app: 'app',
+  app: 'views',
   assetsDir: '{{site.theme.link}}/',
   cache: '.asset-cache',
   dest: 'public',
@@ -16,7 +16,6 @@ var config = {
   },
   temp: '.tmp',
   url: 'local.dev',
-  views: 'views',
 };
 
 module.exports = config;

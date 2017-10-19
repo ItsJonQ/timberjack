@@ -1,12 +1,14 @@
 // Gulpfile
 'use strict';
+const path = require('path');
+require('dotenv').config();
 
 global.config = require('./scripts/gulp/config');
 global.path = __dirname;
 global.exec = require('./scripts/node/utils/exec');
 global.spawn = require('./scripts/node/utils/spawn');
 global.require = function(modulePath, options) {
-  var log = true;
+  let log = true;
 
   if (options && typeof(options.log) !== 'undefined') {
     log = options.log;
@@ -24,16 +26,9 @@ global.require = function(modulePath, options) {
   }
 };
 
-var gulp = global.require('gulp');
-var requireDir = global.require('require-dir', { log: false });
+const gulp = global.require('gulp');
+const glob = global.require('glob', { log: false });
 
-// Require all tasks
-if (requireDir) {
-  requireDir('./scripts/gulp', { recurse: true });
-}
-else {
-  gulp.task('default', function() {
-    console.log('\x1b[31m' + 'Dependencies are missing!' + '\x1b[0m');
-    console.log('\x1b[31m' + 'Try running: npm install' + '\x1b[0m');
-  });
-}
+glob.sync('./scripts/gulp/**/*.js').forEach(function(file) {
+  require(path.resolve(file));
+});

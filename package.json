@@ -4,6 +4,8 @@
   "description": "A starter boilerplate theme for Wordpress that runs on [Timber](https://github.com/jarednova/timber)",
   "main": "index.js",
   "scripts": {
+    "deploy": "gulp deploy",
+    "start": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,28 +19,29 @@
   },
   "homepage": "https://github.com/ItsJonQ/timberjack",
   "devDependencies": {
-    "browser-sync": "^2.18.5",
-    "browserify": "^13.1.1",
-    "check-dependencies": "^1.0.1",
-    "del": "^2.2.2",
-    "gulp": "^3.9.1",
-    "gulp-clean-css": "^2.3.2",
+    "browser-sync": "^2.18.13",
+    "browserify": "^14.4.0",
+    "check-dependencies": "^1.1.0",
+    "del": "^3.0.0",
+    "dotenv": "4.0.0",
+    "glob": "7.1.2",
+    "gulp": "3.9.1",
+    "gulp-clean-css": "^3.9.0",
     "gulp-concat": "^2.6.1",
     "gulp-plumber": "^1.1.0",
     "gulp-rename": "^1.2.2",
-    "gulp-rsync": "0.0.7",
-    "gulp-sass": "^3.0.0",
-    "gulp-sourcemaps": "^1.9.1",
-    "gulp-uglify": "^2.0.0",
-    "gulp-util": "^3.0.7",
+    "gulp-rsync": "0.0.8",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-uglify": "^3.0.0",
+    "gulp-util": "^3.0.8",
     "lazypipe": "^1.0.1",
-    "require-dir": "^0.3.1",
-    "run-sequence": "^1.2.2",
+    "run-sequence": "^2.2.0",
     "seed-harvester": "0.1.5",
     "seed-packer": "0.0.10",
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
-    "jquery": "^3.1.1"
+    "jquery": "^3.2.1"
   }
 }

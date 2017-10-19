@@ -9,7 +9,7 @@ var options = require('./_options');
 gulp.task('watch-twig', function (callback) {
   gulp.watch([
     global.config.app + '/**/*'
-  ], options, ['php'])
+  ], options)
   .on('change', function(event) {
     var file = event.path
       .replace(global.path, '');

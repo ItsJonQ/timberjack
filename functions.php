@@ -3,6 +3,8 @@
  * Functions
  */
 
+define('SITE_VERSION', '1.0.0');
+
 // Composer dependencies
 require_once('vendor/autoload.php');
 $timber = new \Timber\Timber();
@@ -83,6 +85,9 @@ class StarterSite extends TimberSite {
     $context['menu'] = new TimberMenu();
     $context['site'] = $this;
     $context['environment'] = "production";
+
+    // Defining the site's version
+    $context['site']->version = SITE_VERSION;
 
     // Defining the theme's public folder
     $context['site']->theme->public = $context['site']->theme->uri . "/public";

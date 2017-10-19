@@ -9,12 +9,9 @@ gulp.task('deploy', function(callback) {
   runSequence(
     'verify-dependencies',
     'clean',
-    [
-      'php',
-      'images',
-      'styles',
-      'scripts',
-    ],
+    'images',
+    'styles',
+    'scripts',
     'deploy-production',
     callback
   );
