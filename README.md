@@ -8,8 +8,6 @@ A starter boilerplate theme for Wordpress that runs on [Timber](https://github.c
 * local Wordpress environment
 
 
---
-
 
 ### Getting Started
 
@@ -30,8 +28,6 @@ npm start
 ```
 
 
---
-
 
 ### Customizing Timberjack
 
@@ -39,8 +35,6 @@ npm start
 * customize the attributes in ```style.css```
 * replace ```screenshot.png``` with the theme screenshot of your choice
 
-
---
 
 
 ### Deploying
